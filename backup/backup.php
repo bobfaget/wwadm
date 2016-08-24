@@ -6,7 +6,7 @@
 
 // Create the mysql backup file
 // edit this section
-$dbhost = "sql2.hostinger.in"; // usually localhost
+$dbhost = "mysql.hostinger.in"; // usually localhost
 $dbuser = "u868558704_ww";
 $dbpass = "y8vztaqu";
 $dbname = "u868558704_ww";
