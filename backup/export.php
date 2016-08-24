@@ -2,7 +2,7 @@
     //ENTER THE RELEVANT INFO BELOW
     $mysqlUserName      = "u868558704_ww";
     $mysqlPassword      = "y8vztaqu";
-    $mysqlHostName      = "sql2.hostinger.in";
+    $mysqlHostName      = "mysql.hostinger.in";
     $DbName             = "u868558704_ww";
     $backup_name        = "mybackup.sql";
     $tables             = array("episodes", "links", "movies", "reported", "requests", "tvshows", "users");
