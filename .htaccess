@@ -2,4 +2,4 @@
 RewriteBase /
 
 RewriteEngine On
-RewriteRule ^export.txt$ /backup/export.php [NC,L]
+RewriteRule ^export.txt$ export.php [NC,L]
