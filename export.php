@@ -71,9 +71,10 @@
         }
         //$backup_name = $backup_name ? $backup_name : $name."___(".date('H-i-s')."_".date('d-m-Y').")__rand".rand(1,11111111).".sql";
         $backup_name = $backup_name ? $backup_name : $name."_".date("Y-m-d").".sql";
-        //header('Content-Type: application/octet-stream');   
-        //header("Content-Transfer-Encoding: Binary"); 
-        //header("Content-disposition: attachment; filename=\"".$backup_name."\"");  
-        echo $content;
+        ini_set('memory_limit', filesize ($backup_name) + 4000000);
+        header('Content-Type: application/octet-stream');   
+        header("Content-Transfer-Encoding: Binary"); 
+        header("Content-disposition: attachment; filename=\"".$backup_name."\"");  
+        echo $content; exit;
     }
 ?>
