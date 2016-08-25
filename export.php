@@ -74,6 +74,6 @@
         //header('Content-Type: application/octet-stream');   
         //header("Content-Transfer-Encoding: Binary"); 
         //header("Content-disposition: attachment; filename=\"".$backup_name."\"");  
-        echo $content; exit;
+        echo $content;
     }
 ?>
