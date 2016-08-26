@@ -23,29 +23,34 @@ foreach($show_s as $show) {
 		$show_name = mysql_real_escape_string($show_name);
 		$tv_maze_id = $info['id'];
 		$viewtot = "0";
-		
+		$add_show = mysql_query("INSERT INTO tvshows(show_name, tv_maze_id, views) VALUES('$show_name', '$tv_maze_id', '$viewtot')");
+if($add_show) {
 		$get_episodes = file_get_contents("http://api.tvmaze.com/shows/".$show['id']."/episodes");
 		$allepisodes = json_decode($get_episodes, true);
-		$new_ep_arr = array();
 		foreach($allepisodes as $episode) {
 			$e_arr = array();
-			$e_arr['season'] = $episode['season'];
-			$e_arr['episode'] = $episode['number'];
-			$e_arr['link_count'] = "0";
-			$e_arr['views'] = "0";
-			$e_arr['aired'] = $episode['airdate'];
-			$e_arr['app_link'] = "_";
-			$e_arr['admin_link'] = "_";
-			$e_arr['episode_id'] = uniqid(); 
-			$new_ep_arr[] = $e_arr;
+			$show_id = mysql_query("SELECT * FROM tvshows WHERE tv_maze_id=".$show['id']);
+			$my_show_id = mysql_fetch_array($show_id);
+			$e_arr['show_id'] = "'".$my_show_id['id']."'";
+			$e_arr['season'] = "'".$episode['season']."'";
+			$e_arr['episode'] = "'".$episode['number']."'";
+			$e_arr['link_count'] = "'0'";
+			$e_arr['views'] = "'0'";
+			$aired = str_replace("-", "", $episode['airdate']);
+			$e_arr['aired'] = "'".$aired."'";
+			$e_arr['app_link'] = "''";
+			$e_arr['admin_link'] = "''";
+			$episodes = implode(", ", $e_arr);
+			$add_episodes = mysql_query("INSERT INTO episodes(show_id, season, episode, link_count, views, aired, app_link, admin_link) VALUES(".$episodes.")");
 		}
-		$episodes = serialize($new_ep_arr);
-		$add_show = mysql_query("INSERT INTO tvshows(show_name, tv_maze_id, views, episodes) VALUES('$show_name', '$tv_maze_id', '$viewtot', '$episodes')");
-	}
-if($add_show) {
-	echo "success<br>";
+		if($add_episodes) {
+			echo "success";
+		} else {
+			echo "fail. ".mysql_error();
+		}
 } else {
 	echo "<br>Failed. ".mysql_error();
+}
 }
 }
 } else {
