@@ -40,8 +40,9 @@ if($add_show) {
 			$e_arr['aired'] = "'".$aired."'";
 			$e_arr['app_link'] = "''";
 			$e_arr['admin_link'] = "''";
+			$e_arr['custom_episode'] = "'0'";
 			$episodes = implode(", ", $e_arr);
-			$add_episodes = mysql_query("INSERT INTO episodes(show_id, season, episode, link_count, views, aired, app_link, admin_link) VALUES(".$episodes.")");
+			$add_episodes = mysql_query("INSERT INTO episodes(show_id, season, episode, link_count, views, aired, app_link, admin_link, custom_episode) VALUES(".$episodes.")");
 		}
 		if($add_episodes) {
 			echo "success";
