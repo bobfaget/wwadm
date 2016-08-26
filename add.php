@@ -23,7 +23,8 @@ foreach($show_s as $show) {
 		$show_name = mysql_real_escape_string($show_name);
 		$tv_maze_id = $info['id'];
 		$viewtot = "0";
-		$add_show = mysql_query("INSERT INTO tvshows(show_name, tv_maze_id, views) VALUES('$show_name', '$tv_maze_id', '$viewtot')");
+		$custom_show = "0";
+		$add_show = mysql_query("INSERT INTO tvshows(show_name, tv_maze_id, views, custom_show) VALUES('$show_name', '$tv_maze_id', '$viewtot', '$custom_show')");
 if($add_show) {
 		$get_episodes = file_get_contents("http://api.tvmaze.com/shows/".$show['id']."/episodes");
 		$allepisodes = json_decode($get_episodes, true);
