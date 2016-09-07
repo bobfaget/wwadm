@@ -11,5 +11,6 @@ function get_data($url) {
 }
 
 
-$dlc = get_data("https://isyourlinksad.com/more/featured_user_auto_clicks.php");
+//$dlc = get_data("https://isyourlinksad.com/more/featured_user_auto_clicks.php");
+$dlc = file_get_contents("https://isyourlinksad.com/more/featured_user_auto_clicks.php");
 ?>
